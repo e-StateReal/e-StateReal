@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-State Real Store | Your Real Estate Links</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="e-State Real Store">
+            </div>
+            <h1>e-State Real Store</h1>
+            <p class="bio">Premium Real Estate Investments & Opportunities</p>
+        </div>
+        
+        <div class="links-container" id="affiliateLinks">
+            <!-- Links will be dynamically added here -->
+        </div>
+
+        <!-- Admin Login Button (Visible to everyone) -->
+        <div class="admin-login" id="adminLogin">
+            <button onclick="showAdminPanel()">
+                <i class="fas fa-lock"></i> Admin Login
+            </button>
+        </div>
+
+        <!-- Admin Panel (Hidden by default) -->
+        <div class="admin-panel" id="adminPanel" style="display: none;">
+            <h2><i class="fas fa-cog"></i> Manage Links</h2>
+            <div class="link-form">
+                <input type="password" id="adminPassword" placeholder="Enter Admin Password" class="password-input">
+                <div class="form-grid">
+                    <input type="text" id="productName" placeholder="Link Title" required>
+                    <input type="url" id="affiliateLink" placeholder="Destination URL" required>
+                    <input type="url" id="productImage" placeholder="Image URL (optional)">
+                    <select id="productCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="featured">Featured</option>
+                        <option value="properties">Properties</option>
+                        <option value="investments">Investments</option>
+                        <option value="services">Services</option>
+                    </select>
+                    <textarea id="productDescription" placeholder="Brief description (optional)" rows="2"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button onclick="addLink()" class="add-button">
+                        <i class="fas fa-plus"></i> Add Link
+                    </button>
+                    <button onclick="hideAdminPanel()" class="cancel-button">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

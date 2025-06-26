@@ -1,0 +1,48 @@
+{
+    "diabetes": {
+        "problems": [
+            "Uncontrolled blood sugar levels",
+            "Risk of diabetic complications",
+            "Dietary management needed"
+        ],
+        "interventions": [
+            "Monitor blood glucose levels",
+            "Implement carbohydrate counting",
+            "Schedule regular endocrinologist appointments",
+            "Start insulin therapy if needed"
+        ],
+        "goals": [
+            "Maintain HbA1c < 7%",
+            "Achieve target blood glucose levels",
+            "Improve dietary compliance"
+        ],
+        "barriers": [
+            "Limited access to healthy food options",
+            "Financial constraints for medication",
+            "Difficulty with insulin administration"
+        ]
+    },
+    "cardio": {
+        "problems": [
+            "Hypertension",
+            "Risk of cardiovascular events",
+            "Dyslipidemia"
+        ],
+        "interventions": [
+            "Prescribe antihypertensive medication",
+            "Recommend lifestyle modifications",
+            "Schedule regular blood pressure monitoring",
+            "Implement cholesterol management"
+        ],
+        "goals": [
+            "Maintain BP < 130/80 mmHg",
+            "Reduce cardiovascular risk",
+            "Improve lipid profile"
+        ],
+        "barriers": [
+            "Medication side effects",
+            "Lifestyle change resistance",
+            "Financial constraints for medications"
+        ]
+    }
+}
