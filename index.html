@@ -18,15 +18,21 @@
                 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="e-State Real Store">
             </div>
             <h1>e-State Real Store</h1>
-            <p class="bio">Premium Real Estate Investments & Opportunities</p>
+            <div class="social-links">
+                <a href="https://instagram.com/e_state_real" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/E-StateReal" class="social-icon" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://linkedin.com/in/e-StateReal" class="social-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://x.com/e_state_real" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.tiktok.com/@estate.real" class="social-icon" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
         </div>
         
         <div class="links-container" id="affiliateLinks">
             <!-- Links will be dynamically added here -->
         </div>
 
-        <!-- Admin Login Button (Visible to everyone) -->
-        <div class="admin-login" id="adminLogin">
+        <!-- Admin Login Button (Hidden by default, shown only with #admin) -->
+        <div class="admin-login" id="adminLogin" style="display: none;">
             <button onclick="showAdminPanel()">
                 <i class="fas fa-lock"></i> Admin Login
             </button>
@@ -43,6 +49,20 @@
                     <input type="url" id="productImage" placeholder="Image URL (optional)">
                     <select id="productCategory" required>
                         <option value="">Select Category</option>
+                        <option value="health-fitness">Health & Fitness</option>
+                        <option value="beauty">Beauty</option>
+                        <option value="diets-weight-loss">Diets & Weight Loss</option>
+                        <option value="womens-health">Women's Health</option>
+                        <option value="e-business-marketing">E-Business & Marketing</option>
+                        <option value="home-garden">Home & Garden</option>
+                        <option value="self-help">Self-Help</option>
+                        <option value="pets-animals">Pets & Animals</option>
+                        <option value="betting-systems">Betting Systems</option>
+                        <option value="online-dating">Online Dating</option>
+                        <option value="music">Music</option>
+                        <option value="photography-video">Photography & Video</option>
+                        <option value="social-media">Social Media</option>
+                        <option value="education">Education</option>
                         <option value="featured">Featured</option>
                         <option value="properties">Properties</option>
                         <option value="investments">Investments</option>
@@ -59,14 +79,6 @@
                     </button>
                 </div>
             </div>
-        </div>
-        
-        <div class="social-links">
-            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-        </div>
         </div>
     </div>
     <script src="script.js"></script>

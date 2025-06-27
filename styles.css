@@ -62,14 +62,13 @@ body {
 
 
 
-/* Layout */
+/* Container */
 .container {
-    max-width: 600px;
+    max-width: 380px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0.5rem 0.5rem 30px;
     position: relative;
     z-index: 1;
-    padding-bottom: 60px;
 }
 
 /* Profile Section */
@@ -104,61 +103,211 @@ h1 {
     letter-spacing: -0.5px;
 }
 
-.bio {
-    color: #666;
-    font-size: 1rem;
-    max-width: 80%;
-    margin: 0 auto;
-}
+/* Bio text has been removed */
 
 /* Links Container */
 .links-container {
     margin: 25px 0;
 }
 
-.link-card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    padding: 15px 20px;
-    margin-bottom: 15px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
+/* Admin mode indicator */
+body.admin-mode::before {
+    content: '';
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: #4CAF50;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #4CAF50;
+    z-index: 1000;
 }
 
-.link-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+.link-card {
+    display: flex;
+    align-items: center;
     background: white;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    padding: 10px 18px;
+    position: relative;
+    min-height: 0;
+    width: 100%;
 }
 
 .link-card .link-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    background: #f5f5f5;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    margin-right: 14px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f3f3f3;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
     flex-shrink: 0;
 }
 
 .link-card .link-icon img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+.link-card .link-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
 }
 
 .link-card .link-text {
-    text-align: left;
-    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 1 0%;
+    min-width: 0;
+    overflow: visible;
+}
+
+.link-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #222;
+    margin-bottom: 0px;
+    display: block;
+    word-break: break-word;
+    line-height: 1.2;
+    width: 100%;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+}
+
+body.admin-mode .link-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.view-details-link {
+    color: #1a0dab !important;
+    text-decoration: underline;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 2px 0 0 0;
+    font: inherit;
+    cursor: pointer;
+    display: inline;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    font-size: 1rem;
+}
+
+.view-details-link:hover {
+    color: #1769aa !important;
+    text-decoration: underline;
+}
+
+.link-desc {
+    font-size: 0.97rem;
+    color: #444;
+    background: #f8f8f8;
+    border-radius: 6px;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    padding: 8px 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    display: block;
+    word-break: break-word;
+}
+
+.link-actions {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 2px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Hide chevron icon if present */
+.link-card .fa-chevron-right { display: none !important; }
+
+body.admin-mode .link-card {
+    border: 1.5px dashed #4CAF50;
+}
+
+/* Remove any green background from text area */
+.link-card .link-content, .link-card .link-text {
+    background: none !important;
+}
+
+/* Admin action buttons */
+.edit-btn, .delete-btn {
+    background: white;
+    border: 1px solid #e0e0e0;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    padding: 0;
+    margin: 0;
+    font-size: 0.7rem;
+    color: #555;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.edit-btn {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+}
+
+.delete-btn {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Make sure cards have enough space for actions */
+.link-card {
+    padding-right: 150px !important;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+
+
+/* Admin mode specific styles */
+body.admin-mode .link-card {
+    border: 1px dashed rgba(33, 150, 243, 0.3);
+}
+
+body.admin-mode .link-card:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .link-card .link-title {
@@ -166,12 +315,6 @@ h1 {
     font-size: 1rem;
     margin-bottom: 3px;
     color: #000;
-}
-
-.link-card .link-desc {
-    font-size: 0.85rem;
-    color: #666;
-    margin: 0;
 }
 
 /* Admin Panel */
@@ -462,3 +605,63 @@ button:hover {
         padding: 1rem;
     }
 }
+
+/* Modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal box */
+.modal-box {
+    background: #fff;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90vw;
+    padding: 28px 22px 18px 22px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    position: relative;
+    z-index: 1001;
+    text-align: left;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 1.3rem;
+    color: #888;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+    transition: color 0.2s;
+}
+.modal-close:hover {
+    color: #2196F3;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.modal-desc {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 0;
+    word-break: break-word;
+}
+
+/* Compact card tweaks */
+.link-card { padding: 10px 14px; }
+.link-card .link-icon { margin-right: 10px; }
+.link-card .link-text { gap: 2px; }

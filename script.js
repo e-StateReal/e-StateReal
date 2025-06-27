@@ -31,21 +31,75 @@ const passwordInput = document.getElementById('adminPassword');
 
 // Show admin panel
 function showAdminPanel() {
-    const password = prompt('Enter admin password:');
-    if (password === ADMIN_PASSWORD) {
-        adminPanel.style.display = 'block';
-        adminLogin.style.display = 'none';
-        passwordInput.value = '';
-    } else if (password !== null) {
-        alert('Incorrect password');
+    try {
+        const password = prompt('Enter admin password:');
+        if (password === ADMIN_PASSWORD) {
+            // Set admin mode flag
+            isAdminMode = true;
+            
+            // Show admin panel and hide login button
+            const adminPanel = document.getElementById('adminPanel');
+            const adminLogin = document.getElementById('adminLogin');
+            adminPanel.style.display = 'block';
+            adminLogin.style.display = 'none';
+            
+            // Add admin mode class to body
+            document.body.classList.add('admin-mode');
+            
+            // Force re-render to show edit buttons
+            renderLinks();
+            
+            // Add a small delay to ensure the DOM is updated
+            setTimeout(() => {
+                // Make sure all action buttons are visible
+                document.querySelectorAll('.link-actions').forEach(actions => {
+                    actions.style.display = 'flex';
+                    actions.style.opacity = '1';
+                    actions.style.visibility = 'visible';
+                });
+                
+                // Add padding to all link cards for action buttons
+                document.querySelectorAll('.link-card').forEach(card => {
+                    card.style.paddingRight = '150px';
+                });
+            }, 50);
+            
+        } else if (password !== null) {
+            alert('Incorrect password');
+        }
+    } catch (error) {
+        console.error('Error in showAdminPanel:', error);
+        alert('An error occurred. Please check the console for details.');
     }
 }
 
 // Hide admin panel
 function hideAdminPanel() {
-    adminPanel.style.display = 'none';
-    adminLogin.style.display = 'block';
-    clearForm();
+    try {
+        const adminPanel = document.getElementById('adminPanel');
+        const adminLogin = document.getElementById('adminLogin');
+        
+        // Hide admin panel and show login button
+        adminPanel.style.display = 'none';
+        adminLogin.style.display = 'block';
+        
+        // Remove admin mode class from body
+        document.body.classList.remove('admin-mode');
+        
+        // Clear the form
+        clearForm();
+        
+        // Re-render links without admin controls
+        renderLinks();
+        
+        // Reset padding on link cards
+        document.querySelectorAll('.link-card').forEach(card => {
+            card.style.paddingRight = '';
+        });
+        
+    } catch (error) {
+        console.error('Error in hideAdminPanel:', error);
+    }
 }
 
 // Clear the form
@@ -61,6 +115,9 @@ function clearForm() {
 function renderLinks() {
     const linksContainer = document.getElementById('affiliateLinks');
     linksContainer.innerHTML = '';
+    
+    // Check if in admin mode
+    const isAdminMode = document.body.classList.contains('admin-mode');
     
     // Group links by category
     const linksByCategory = {};
@@ -94,34 +151,83 @@ function renderLinks() {
         // Add links for this category
         categoryLinks.forEach((link, index) => {
             const linkIndex = links.findIndex(l => l.name === link.name);
-            const linkElement = document.createElement('a');
-            linkElement.href = link.url;
-            linkElement.target = '_blank';
+            const linkElement = document.createElement('div');
             linkElement.className = 'link-card';
-            linkElement.innerHTML = `
+            
+            // Use full product name for main page
+            let displayName = link.name;
+            
+            // Create the main link content
+            const linkContent = document.createElement('div');
+            linkContent.className = 'link-content';
+            linkContent.style.cursor = 'default';
+            linkContent.style.display = 'flex';
+            linkContent.style.flexDirection = 'row';
+            linkContent.style.alignItems = 'center';
+            linkContent.innerHTML = `
                 <div class="link-icon">
-                    ${link.image ? 
-                        `<img src="${link.image}" alt="${link.name}">` : 
-                        `<i class="fas fa-link"></i>`}
+                    ${link.image ? `<img src="${link.image}" alt="${link.name}">` : `<i class="fas fa-link"></i>`}
                 </div>
-                <div class="link-text">
-                    <div class="link-title">${link.name}</div>
-                    ${link.description ? `<div class="link-desc">${link.description}</div>` : ''}
+                <div class="link-text" style="display: flex; flex-direction: column; align-items: flex-start; flex: 1; min-width: 0;">
+                    <div class="link-title" title="${link.name}">${displayName}</div>
+                    ${!isAdminMode ? `<a href="javascript:void(0);" class="view-details-link" data-index="${linkIndex}">View Details</a>` : ''}
                 </div>
-                <i class="fas fa-chevron-right"></i>
             `;
             
-            // Add right-click menu for admin
-            if (adminPanel.style.display === 'block') {
-                linkElement.addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
-                    showLinkMenu(e, linkIndex);
-                });
+            linkElement.appendChild(linkContent);
+            
+            // Always add actions container, but only show in admin mode
+            const actions = document.createElement('div');
+            actions.className = 'link-actions';
+            
+            const editBtn = document.createElement('button');
+            editBtn.className = 'edit-btn';
+            editBtn.title = 'Edit';
+            editBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+            editBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                editLink(linkIndex);
+            };
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.title = 'Delete';
+            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+            deleteBtn.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (confirm('Are you sure you want to delete this link?')) {
+                    deleteLink(linkIndex);
+                }
+            };
+            
+            actions.appendChild(editBtn);
+            actions.appendChild(deleteBtn);
+            if (isAdminMode) {
+                linkElement.appendChild(actions);
             }
+            
+            // Add context menu for right-click
+            linkElement.oncontextmenu = (e) => {
+                e.preventDefault();
+                showLinkMenu(e, linkIndex);
+            };
             
             linksContainer.appendChild(linkElement);
         });
     });
+
+    // Add event listeners for View Details links (only if not admin mode)
+    if (!document.body.classList.contains('admin-mode')) {
+        document.querySelectorAll('.view-details-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const idx = this.getAttribute('data-index');
+                const offer = links[idx];
+                showModal(offer.name, offer.description);
+            });
+        });
+    }
 }
 
 // Show context menu for link actions
@@ -198,19 +304,29 @@ function addLink() {
 // Edit a link
 function editLink(index) {
     const link = links[index];
+    if (!link) return;
     
+    // Fill the form with link data
     document.getElementById('productName').value = link.name;
     document.getElementById('productDescription').value = link.description || '';
     document.getElementById('productImage').value = link.image || '';
     document.getElementById('affiliateLink').value = link.url;
     document.getElementById('productCategory').value = link.category;
     
-    // Remove the link from the array
+    // Remove the link from the array (we'll add it back if saved)
     links.splice(index, 1);
     saveLinks();
     
-    // Scroll to form
-    document.querySelector('.admin-panel').scrollIntoView({ behavior: 'smooth' });
+    // Show admin panel if not already visible
+    if (adminPanel.style.display !== 'block') {
+        showAdminPanel();
+    } else {
+        // Scroll to form
+        document.querySelector('.admin-panel').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Re-render to update the UI
+    renderLinks();
 }
 
 // Delete a link
@@ -227,20 +343,62 @@ function saveLinks() {
     localStorage.setItem('affiliateLinks', JSON.stringify(links));
 }
 
+// Modal logic
+function showModal(title, desc) {
+    // Remove any existing modal
+    const existing = document.querySelector('.modal-overlay');
+    if (existing) existing.remove();
+    
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+        <div class="modal-box">
+            <button class="modal-close" title="Close">&times;</button>
+            <div class="modal-title">${title}</div>
+            <div class="modal-desc">${desc || 'No description available.'}</div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+    
+    // Close logic
+    overlay.querySelector('.modal-close').onclick = () => overlay.remove();
+    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+    // Show Admin Login button only if #admin is in the URL
+    const adminLogin = document.getElementById('adminLogin');
+    if (window.location.hash === '#admin') {
+        adminLogin.style.display = 'block';
+    } else {
+        adminLogin.style.display = 'none';
+    }
+
     // Check if there's a hash in the URL for admin access
     if (window.location.hash === '#admin') {
         showAdminPanel();
     }
     
-    // Add keyboard shortcut (Ctrl+Alt+A) to show admin panel
+    // Render initial links
+    renderLinks();
+    
+    // Add keyboard shortcut for admin panel (Ctrl+Alt+A)
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.altKey && e.key === 'a') {
             e.preventDefault();
-            showAdminPanel();
+            if (adminPanel.style.display === 'block') {
+                hideAdminPanel();
+            } else {
+                showAdminPanel();
+            }
         }
     });
-    
-    renderLinks();
+
+    // Make sure admin mode is properly initialized
+    if (adminPanel.style.display === 'block') {
+        document.body.classList.add('admin-mode');
+    }
 });
+
