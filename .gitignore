@@ -1,7 +1,7 @@
-# Node modules (si usas npm o yarn)
+# Node modules
 node_modules/
 
-# Build output (por ejemplo Vite, React, Vue, etc.)
+# Build output
 dist/
 build/
 .out/
@@ -20,12 +20,12 @@ pnpm-debug.log*
 # VS Code
 .vscode/
 
-# Sistema operativo
+# Operating system
 Thumbs.db
 ehthumbs.db
 desktop.ini
 
-# Archivos temporales o de backup
+# Temporary files
 *.swp
 *.swo
 *~
@@ -36,5 +36,6 @@ desktop.ini
 .env
 .env.*
 
-# GitHub Pages (opcional si usas gh-pages branch)
+# GitHub Pages
 gh-pages/
+.history/
