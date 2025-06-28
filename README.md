@@ -1,232 +1,77 @@
-# e-State Real Store - Recommendation Bot
+# 🏠 e-State Real Store
 
-A modern hybrid application that combines real estate affiliate link management with an intelligent medical recommendation system featuring medical coding support.
+A simple, modern real estate affiliate platform built with Jekyll for GitHub Pages.
 
-## 🏠 Real Estate Frontend
-
-The frontend serves as a professional real estate affiliate link management platform for "e-State Real Store", allowing users to discover and access curated real estate resources, properties, and services.
-
-### Features
-
-- **Professional Profile**: Clean, modern interface showcasing e-State Real Store
-- **Social Media Integration**: Direct links to Instagram, Facebook, LinkedIn, Twitter, and TikTok
-- **Dynamic Link Management**: Admin panel for managing affiliate links and product recommendations
-- **Category Organization**: Links organized by categories including:
-
-  - Health & Fitness
-  - Beauty
-  - Diets & Weight Loss
-  - Women's Health
-  - E-Business & Marketing
-  - Home & Garden
-  - Self-Help
-  - Pets & Animals
-  - Betting Systems
-  - Online Dating
-  - Music
-  - Photography & Video
-  - Social Media
-  - Education
-  - Properties
-  - Investments
-  - Services
-
-## 🏥 Medical Recommendation Backend
-
-A sophisticated recommendation system that processes medical content and provides intelligent suggestions with medical coding support.
-
-### Core Features
-
-#### 1. Multi-Input Processing
-
-- **Claims Analysis**: Process and analyze insurance claims
-- **Assessment Processing**: Handle structured assessment responses
-- **Speech Analysis**: Process speech-to-text medical content
-- **Medical Content**: Extract and analyze medical terminology
-
-#### 2. Medical Coding Support
-
-- **ICD-10 Codes**: Automatic detection and suggestion of diagnosis codes
-- **CPT Codes**: Procedure code recommendations
-- **Related Conditions**: Suggest related medical conditions and procedures
-- **Medical Database**: Comprehensive database of common medical conditions
-
-#### 3. Sentiment Analysis
-
-- **Text Sentiment**: Analyze emotional tone of medical content
-- **Recommendation Generation**: Provide sentiment-based recommendations
-- **Keyword Extraction**: Identify important medical terms and themes
-
-### Supported Medical Categories
-
-- **Cardiovascular**: Hypertension, Angina, Heart conditions
-- **Endocrine**: Type 1/2 Diabetes, Metabolic disorders
-- **Respiratory**: Asthma, COPD, Respiratory infections
-- **Mental Health**: Depression, Anxiety disorders
-- **Common Conditions**: Back pain, Headaches, Cold/Flu
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+- **Ruby** (v2.7 or higher) - [Download here](https://www.ruby-lang.org/en/documentation/installation/)
 
-### Installation
+### Local Development
 
-1. **Clone the repository**
+#### Windows
 
-   ```bash
-   git clone <repository-url>
-   cd e-statereal-sabino
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Environment Setup**
-   Create a `.env` file in the root directory:
-
-   ```env
-   PORT=5000
-   NODE_ENV=development
-   ```
-
-4. **Start the application**
-
-   ```bash
-   # Development mode
-   npm run dev
-   
-   # Production mode
-   npm start
-   ```
-
-5. **Access the application**
-
-   - Frontend: `http://localhost:5000`
-   - API Endpoints: `http://localhost:5000/api`
-
-## 📡 API Endpoints
-
-### Medical Recommendations
-
-```curl
-POST /api/recommendations
+```cmd
+run-local.bat
 ```
 
-**Request Body:**
+#### macOS/Linux
 
-```json
-{
-  "claim": "Patient presents with chest pain and shortness of breath",
-  "assessment": ["Severe chest pain", "Difficulty breathing"],
-  "speech": "Patient describes sharp chest pain lasting 2 hours",
-  "medicalContent": "Hypertension and diabetes noted in history"
-}
+```bash
+chmod +x run-local.sh
+./run-local.sh
 ```
 
-### Medical Codes Search
+#### Manual Setup
 
-```curl
-GET /api/medical-codes/search?term=hypertension
-GET /api/medical-codes/I10
+```bash
+# Install dependencies
+bundle install
+
+# Start development server
+bundle exec jekyll serve --livereload
 ```
 
-## 🛠️ Development
+### Access Your Site
 
-### Available Scripts
+- **Local**: [localhost](http://localhost:4000)
+- **Live reload**: Enabled automatically
 
-- `npm start` - Start production server
-- `npm run dev` - Start development server with nodemon
-- `npm test` - Run test suite
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-
-### Project Structure
+## 📁 Project Structure
 
 ```plaintext
-e-statereal-sabino/
-├── src/
-│   ├── controllers/          # API route controllers
-│   │   ├── medicalCodesController.js
-│   │   └── recommendationController.js
-│   ├── services/             # Business logic services
-│   │   ├── medicalCodesService.js
-│   │   ├── recommendationService.js
-│   │   └── transcriptionProcessor.js
-│   ├── data/                 # JSON data files
-│   │   ├── medical-codes-db.json
-│   │   └── care-plan-templates.json
-│   └── server.js             # Express server setup
-├── index.html               # Main frontend page
-├── styles.css               # Frontend styles
-├── script.js                # Frontend JavaScript
-└── package.json             # Dependencies and scripts
+e-statereal/
+├── _config.yml          # Jekyll configuration
+├── _layouts/            # Jekyll layouts
+│   └── default.html
+├── assets/              # Static assets
+│   ├── css/
+│   │   └── main.scss
+│   └── js/
+│       └── main.js
+├── index.md             # Homepage
+├── Gemfile              # Ruby dependencies
+└── README.md
 ```
 
-## 🔧 Technologies Used
+## 🎯 Features
 
-### Backend
+- **Real Estate Focus**: Curated property listings and resources
+- **Social Media Integration**: Direct links to all social platforms
+- **Responsive Design**: Works on all devices
+- **Fast Loading**: Optimized for performance
+- **SEO Ready**: Built-in search engine optimization
 
-- **Express.js** - Web framework
-- **Natural** - Natural language processing
-- **Sentiment** - Sentiment analysis
-- **TensorFlow.js** - Machine learning capabilities
-- **Helmet** - Security middleware
-- **Morgan** - HTTP request logging
-- **Compression** - Response compression
+## 🌐 Deploy to GitHub Pages
 
-### Frontend
+1. **Push to GitHub**: Upload your repository
+2. **Enable Pages**: Go to Settings > Pages
+3. **Select Source**: Choose "Deploy from a branch"
+4. **Select Branch**: Choose `main` and `/ (root)`
+5. **Save**: Your site will be live in minutes
 
-- **Vanilla JavaScript** - No framework dependencies
-- **CSS3** - Modern styling with animations
-- **Font Awesome** - Icon library
-- **Google Fonts** - Typography
-
-### Development Tools
-
-- **Nodemon** - Development server
-- **ESLint** - Code linting
-- **Jest** - Testing framework
-- **Webpack** - Module bundling
-
-## 📊 Medical Coding Database
-
-The system includes a comprehensive medical coding database with:
-
-- **ICD-10 Codes**: Diagnosis codes for various medical conditions
-- **CPT Codes**: Procedure codes for medical services
-- **Related Conditions**: Cross-referenced related medical conditions
-- **Keywords**: Searchable medical terminology
-- **Categories**: Organized by medical specialties
-
-## 🔒 Security Features
-
-- **Helmet.js** - Security headers
-- **Input Validation** - Express-validator for API inputs
-- **CORS Protection** - Cross-origin resource sharing
-- **Error Handling** - Comprehensive error management
-- **Environment Variables** - Secure configuration management
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 📞 Support
-
-For support and questions:
+## 📞 Connect With Us
 
 - **Instagram**: [@e_state_real](https://instagram.com/e_state_real)
 - **Facebook**: [E-StateReal](https://facebook.com/E-StateReal)
@@ -236,4 +81,4 @@ For support and questions:
 
 ---
 
-**Note**: This application combines real estate affiliate management with medical recommendation capabilities. The medical features are for educational and support purposes only and should not replace professional medical advice.
+**Note**: e-State Real Store is your trusted partner in real estate discovery and investment opportunities.

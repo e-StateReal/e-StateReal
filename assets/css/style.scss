@@ -1,0 +1,608 @@
+---
+---
+
+// Custom variables
+$primary: #2c3e50;
+$secondary: #3498db;
+$accent: #e74c3c;
+$text: #222;
+$text-muted: #6c757d;
+$dark: #343a40;
+$success: #28a745;
+$card-bg: rgba(255,255,255,0.65);
+$shadow: 0 8px 32px rgba(0,0,0,0.18);
+$shadow-hover: 0 12px 36px rgba(0,0,0,0.22);
+
+// Social media brand colors
+$instagram: #E4405F;
+$facebook: #1877F3;
+$linkedin: #0A66C2;
+$twitter: #000000;
+$tiktok: #000000;
+
+// Global styles
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: none;
+}
+
+// --- Background ---
+.landing-bg.parallax {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: url('/assets/img/main_bg.png') center center/cover no-repeat;
+    filter: brightness(0.4) contrast(1.1) saturate(0.8);
+    z-index: 0;
+    background-attachment: fixed;
+}
+
+// --- Main container ---
+.landing-outer {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.central-box {
+    background: $card-bg;
+    border-radius: 1.5rem;
+    box-shadow: $shadow;
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+// --- Avatar ---
+.avatar {
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    box-shadow: $shadow;
+    margin-bottom: 18px;
+    background: #fff;
+}
+.avatar img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: none;
+}
+
+// --- Title ---
+.main-title {
+    color: $primary;
+    font-size: 2.3rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 0 10px 0;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+// --- Social icons with brand colors ---
+.social-icons {
+    display: flex;
+    gap: 22px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+    text-decoration: none;
+}
+.social-icons a:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+// Individual social media colors
+.social-icons a[href*="instagram"] {
+    background: $instagram;
+}
+.social-icons a[href*="instagram"]:hover {
+    background: darken($instagram, 10%);
+}
+
+.social-icons a[href*="facebook"] {
+    background: $facebook;
+}
+.social-icons a[href*="facebook"]:hover {
+    background: darken($facebook, 10%);
+}
+
+.social-icons a[href*="linkedin"] {
+    background: $linkedin;
+}
+.social-icons a[href*="linkedin"]:hover {
+    background: darken($linkedin, 10%);
+}
+
+.social-icons a[href*="x.com"] {
+    background: $twitter;
+}
+.social-icons a[href*="x.com"]:hover {
+    background: lighten($twitter, 20%);
+}
+
+.social-icons a[href*="tiktok"] {
+    background: $tiktok;
+}
+.social-icons a[href*="tiktok"]:hover {
+    background: lighten($tiktok, 20%);
+}
+
+// --- Sections ---
+.sections-row {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+.section-col {
+    flex: 1 1 0;
+    min-width: 280px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid $secondary;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    
+    .title-content {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+.view-all-link {
+    font-size: 0.9rem;
+    color: $primary;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        color: darken($primary, 10%);
+        transform: translateX(3px);
+    }
+    
+    i {
+        margin-left: 0.25rem;
+    }
+}
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+.link-list li {
+    background: rgba(255,255,255,0.8);
+    border-radius: 1rem;
+    box-shadow: $shadow;
+    padding: 1.1rem 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border-left: 4px solid $secondary;
+}
+.link-list li:hover {
+    box-shadow: $shadow-hover;
+    transform: translateY(-2px) scale(1.01);
+    border-left: 4px solid $accent;
+    background: rgba(255,255,255,0.9);
+}
+.link-list .link-label {
+    font-weight: 700;
+    color: $primary;
+    font-size: 1.08rem;
+    letter-spacing: 0.01em;
+}
+.link-list .link-action {
+    color: $secondary;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.link-list .link-action:hover {
+    color: $accent;
+}
+
+// --- Modal Bootstrap override ---
+.modal-content {
+    border-radius: 18px;
+    box-shadow: $shadow-hover;
+    max-width: 90vw;
+    width: 100%;
+}
+.modal-dialog {
+    max-width: 800px;
+    margin: 1.75rem auto;
+}
+.modal-header {
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 2rem 1rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 18px 18px 0 0;
+}
+.modal-title {
+    color: $primary;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.modal-body {
+    padding: 1.5rem 2rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+.modal-footer {
+    border-top: 1px solid #eee;
+    padding: 1rem 2rem 1.5rem 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    background: #f8f9fa;
+    border-radius: 0 0 18px 18px;
+}
+.modal-footer .btn-primary {
+    background: $secondary;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+.modal-footer .btn-primary:hover {
+    background: $accent;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba($accent, 0.3);
+}
+.modal-footer .btn-secondary {
+    background: #6c757d;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+.modal-footer .btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+.modal-footer .btn-success {
+    background: #28a745;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+.modal-footer .btn-success:hover {
+    background: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+// --- Modal content styles ---
+.course-hero, .webinar-hero, .property-hero {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid $secondary;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+.feature-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 1.5rem;
+}
+.feature-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: $secondary;
+    font-weight: bold;
+}
+.feature-list li:last-child {
+    border-bottom: none;
+}
+
+.pricing-card {
+    border: 2px solid #e9ecef;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.session-info {
+    border: 2px solid #e9ecef;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.property-features, .amenities-list {
+    list-style: none;
+    padding: 0;
+}
+.property-features li, .amenities-list li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 1.2rem;
+}
+.property-features li:before, .amenities-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: $secondary;
+    font-weight: bold;
+}
+.property-features li:last-child, .amenities-list li:last-child {
+    border-bottom: none;
+}
+
+.pricing-info {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+// --- Draggable modal styles ---
+.modal-draggable {
+    transition: transform 0.1s ease;
+}
+.modal-draggable .modal-header {
+    cursor: move;
+    user-select: none;
+}
+
+// --- Responsive design ---
+@media (max-width: 1200px) {
+    .central-box {
+        max-width: 95%;
+        padding: 2rem 1.5rem;
+    }
+    
+    .sections-row {
+        gap: 2rem;
+    }
+    
+    .section-col {
+        min-width: 250px;
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .central-box {
+        max-width: 98%;
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+    
+    .sections-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .section-col {
+        min-width: auto;
+        max-width: none;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-title { font-size: 1.3rem; }
+    .avatar { width: 70px; height: 70px; }
+    .section-title { font-size: 1rem; }
+    .link-list li { padding: 0.7rem 0.4rem; }
+    .social-icons a { width: 32px; height: 32px; font-size: 1rem; }
+    .central-box { border-radius: 0.7rem; }
+    .modal-header, .modal-body, .modal-footer { padding: 1rem; }
+    .modal-footer { flex-direction: column; }
+    .modal-footer .btn { width: 100%; margin-bottom: 0.5rem; }
+}
+
+// --- Modal z-index fixes ---
+.modal-backdrop { 
+    z-index: 1040 !important; 
+}
+.modal { 
+    z-index: 1050 !important; 
+}
+
+// Items preview container
+.items-preview {
+    min-height: 150px;
+    max-height: 400px;
+    overflow-y: auto;
+    
+    .loading-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        color: $text-muted;
+        font-style: italic;
+    }
+}
+
+// Item cards for preview
+.item-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+        
+        .item-title {
+            font-weight: 600;
+            color: $dark;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: $success;
+            font-size: 1rem;
+            text-align: right;
+            
+            .original-price {
+                color: $text-muted;
+                text-decoration: line-through;
+                font-size: 0.85rem;
+                margin-left: 0.5rem;
+            }
+        }
+    }
+    
+    .item-details {
+        margin-bottom: 0.75rem;
+        
+        .item-meta {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
+            color: $text-muted;
+            flex-wrap: wrap;
+            
+            .meta-item {
+                display: flex;
+                align-items: center;
+                
+                i {
+                    margin-right: 0.25rem;
+                    width: 12px;
+                }
+            }
+        }
+        
+        .item-description {
+            color: $text-muted;
+            font-size: 0.9rem;
+            line-height: 1.3;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+    
+    .item-actions {
+        display: flex;
+        gap: 0.5rem;
+        
+        .btn {
+            flex: 1;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.75rem;
+        }
+    }
+}
+
+// Empty state
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: $text-muted;
+    
+    i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+    
+    h4 {
+        margin-bottom: 0.5rem;
+        color: $text-muted;
+    }
+    
+    p {
+        margin: 0;
+        font-style: italic;
+    }
+} 
